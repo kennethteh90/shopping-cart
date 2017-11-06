@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/YOURAPPNAME
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: ubuntu
+          RAILS_ENV: test
+      - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_DB: YOURAPPNAME_test
+          POSTGRES_USER: ubuntu
+    steps:
+      - checkout
+
+      - type: cache-restore
+        name: Restore bundle cache
+        key: myapp-bundle-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Bundle Install
+          command: bin/bundle install --path vendor/bundle
+
+      - type: cache-save
+        name: Store bundle cache
+        key: myapp-bundle-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      - run:
+          name: Run tests
+          command: bundle exec rspec
