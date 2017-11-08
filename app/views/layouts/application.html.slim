@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | ShoppingApp
+      | JayKen
     = csrf_meta_tags
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
@@ -13,34 +13,17 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-   nav.navbar.navbar-expand-lg.navbar-light.bg-light
-     a.navbar-brand[href="#"]
-       | Navbar
-     button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
-       span.navbar-toggler-icon
-     #navbarNavDropdown.collapse.navbar-collapse
-       ul.navbar-nav
-         li.nav-item.active
-           a.nav-link[href="#"]
-             | Home
-             span.sr-only
-               | (current)
-         li.nav-item
-           a.nav-link[href="#"]
-             | Features
-         li.nav-item
-           a.nav-link[href="#"]
-             | Pricing
-         li.nav-item.dropdown
-           a#navbarDropdownMenuLink.nav-link.dropdown-toggle[href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
-             |  Dropdown link
-           .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
-             a.dropdown-item[href="#"]
-               | Action
-             a.dropdown-item[href="#"]
-               | Another action
-             a.dropdown-item[href="#"]
-               | Something else here
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+      a.navbar-brand
+        = image_tag "JAYKEN.png", class: "main-logo"
+      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          - Category.all.each do |category|
+            li.nav-item.active
+              a.nav-link
+                = category.name
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: name
