@@ -1,0 +1,10 @@
+h1.jumbotron JayKen | #{ @product.name.capitalize }
+
+.container
+  .row
+    .col-12.card
+      h3 = @product.name
+      h5 = @product.brand
+      p = @product.description
+
+    = link_to 'Back to product list', products_path

@@ -1,0 +1,10 @@
+h1.jumbotron Welcome to JayKen!
+
+.container
+  .row
+    .col-3.card
+      h2 Categories
+    .col-9.card
+      h2 Products
+      .row
+        = render partial: "product", collection: @products
