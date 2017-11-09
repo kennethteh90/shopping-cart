@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | ShoppingApp
+      | JayKen
     = csrf_meta_tags
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
@@ -13,6 +13,19 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+      a.navbar-brand
+        = image_tag "JAYKEN.png", class: "main-logo"
+      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          - Category.all.each do |category|
+            li.nav-item.active
+              a.nav-link
+                = category.name
+
     - flash.each do |name, msg|
-     = content_tag :div, msg, class: name
+      = content_tag :div, msg, class: name
+
     = yield
