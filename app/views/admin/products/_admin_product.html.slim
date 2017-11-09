@@ -1,0 +1,10 @@
+tr
+  td #{ admin_product.name }
+  td #{ admin_product.brand }
+  td #{ admin_product.description }
+  td #{ admin_product.price }
+  td #{ admin_product.quantity }
+  td #{ admin_product.size }
+  td #{ admin_product.color }
+  td = link_to 'Edit', edit_admin_product_path(admin_product)
+  td = link_to 'Delete', admin_product_path(admin_product), method: :delete

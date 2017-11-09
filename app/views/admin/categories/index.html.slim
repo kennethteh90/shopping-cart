@@ -1,0 +1,14 @@
+h1.jumbotron Category List
+
+.container
+  .row
+    .col-12.card
+      h2 Categories
+      .row
+        table.table
+          thead
+            th Name
+          tbody
+          = render partial: "admin_category", collection: @categories
+
+      = link_to 'Add Category', new_admin_category_path
