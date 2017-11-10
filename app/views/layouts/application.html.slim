@@ -24,10 +24,11 @@ html
             li.nav-item.active
               a.nav-link
                 = link_to category.name, category_path(category), class: 'btn'
-      - if current_user.admin?
+      - if admin_signed_in?
         a.mr-sm-2
-          = link_to '', class: 'btn'
-          = link_to '', class: 'btn'
+          p.my-2 = "for admin:"
+          = link_to 'Products Index', admin_products_path, class: 'btn'
+          = link_to 'Category Index', admin_categories_path, class: 'btn'
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: name
