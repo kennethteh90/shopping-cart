@@ -1,6 +1,11 @@
 h1.jumbotron Add a Product
 
 .container
+  = simple_form_for [:admin, @category], class: "form-horizontal" do |f|
+    = f.input :name
+    = f.button :submit
+
+.container
   = simple_form_for [:admin, @product], class: "form-horizontal" do |f|
     = f.input :name
     = f.input :brand
@@ -9,6 +14,9 @@ h1.jumbotron Add a Product
     = f.input :quantity
     = f.input :size
     = f.input :color
+
+    = f.association :categories, collection: Category.all, as: :check_boxes
+
     = f.button :submit
 
   = link_to 'Back to Product List', admin_products_path
