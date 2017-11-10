@@ -2,6 +2,7 @@ h1.jumbotron Category List
 
 .container
   .row
+    = link_to 'Add Category', new_admin_category_path
     .col-12.card
       h2 Categories
       .row
@@ -10,5 +11,3 @@ h1.jumbotron Category List
             th Name
           tbody
           = render partial: "admin_category", collection: @categories
-
-      = link_to 'Add Category', new_admin_category_path
