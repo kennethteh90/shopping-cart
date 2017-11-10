@@ -19,16 +19,23 @@ html
       button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
         span.navbar-toggler-icon
       #navbarNavDropdown.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
+        ul.navbar-nav
           - Category.all.each do |category|
             li.nav-item.active
               a.nav-link
-                = link_to category.name, category_path(category), class: 'btn'
+                = link_to category.name, category_path(category), class: 'nav-link'
+      .nav-item
+        - if user_signed_in?
+          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else
+          = link_to 'Login', new_user_session_path, class: 'nav-link'
       - if admin_signed_in?
-        a.mr-sm-2
-          p.my-2 = "for admin:"
-          = link_to 'Products Index', admin_products_path, class: 'btn'
-          = link_to 'Category Index', admin_categories_path, class: 'btn'
+        .bg-dark.px-3.border.rounded
+          a.mr-sm-2
+            p.my-2.text-white.text-center = "Admin"
+            = link_to 'Products Index', admin_products_path, class: 'btn text-white'
+            = link_to 'Category Index', admin_categories_path, class: 'btn text-white'
+            = link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'btn text-white'
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: name

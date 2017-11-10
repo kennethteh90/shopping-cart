@@ -2,6 +2,7 @@ h1.jumbotron Product List
 
 .container
   .row
+    = link_to 'Add Product', new_admin_product_path
     .col-12.card
       h2 Products
       .row
@@ -16,5 +17,3 @@ h1.jumbotron Product List
             th Color
           tbody
           = render partial: "admin_product", collection: @products
-
-      = link_to 'Add Product', new_admin_product_path

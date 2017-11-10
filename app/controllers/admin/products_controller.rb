@@ -31,6 +31,13 @@ class Admin::ProductsController < AdminController
 
   def update
     @product = Product.find(params[:id])
+    @cat_array = params.dig(:product, :category_ids)[1..-1]
+    @product.product_categories.destroy_all
+    @cat_array.each do |cat|
+      @category = Category.find(cat)
+      @product.categories << @category
+    end
+
     if @product.update(product_params)
       flash[:notice] = "Product updated!"
       redirect_to admin_products_path

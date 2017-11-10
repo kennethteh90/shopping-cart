@@ -13,7 +13,7 @@ class Admin::CategoriesController < AdminController
       @category = Category.new(category_params)
       if @category.save
         flash[:notice] = "Category added!"
-        redirect_to admin_categories_path
+        redirect_to new_admin_product_path
       else
         render :new
       end
