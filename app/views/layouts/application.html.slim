@@ -23,7 +23,11 @@ html
           - Category.all.each do |category|
             li.nav-item.active
               a.nav-link
-                = link_to category.name, category_path(category), class: 'btn'                
+                = link_to category.name, category_path(category), class: 'btn'
+      - if current_user.admin?
+        a.mr-sm-2
+          = link_to '', class: 'btn'
+          = link_to '', class: 'btn'
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: name

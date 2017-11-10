@@ -10,7 +10,6 @@ class Admin::ProductsController < AdminController
   end
 
   def create
-    @category = Category.new
     @product = Product.new(product_params)
     @cat_array = params.dig(:product, :category_ids)[1..-1]
     @cat_array.each do |cat|
