@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Admin.find_or_create_by(email: )
+if Admin.count == 0
+  Admin.create(email:'admin@mail.com', password: '123456')
+end
 
 unless Product.count < 60
   30.times do
