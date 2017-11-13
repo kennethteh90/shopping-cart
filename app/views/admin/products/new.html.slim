@@ -17,7 +17,8 @@ h1.jumbotron Add a Product
 
     = f.association :categories, collection: Category.all, as: :check_boxes
 
-    = f.filestack_field :filelocation, 'Upload Photo'
+    = f.association :photos do |img|
+      = img.filestack_field :filelocation, 'Photo'
 
     = f.button :submit
 
