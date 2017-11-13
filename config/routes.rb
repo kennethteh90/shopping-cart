@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     root to: 'products#index'
     resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :photos, except: [:index, :show]
+    resources :photos, only: [:new, :create, :destroy]
   end
 
 end

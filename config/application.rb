@@ -5,6 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+require 'filestack-rails'
 
 module ShoppingApp
   class Application < Rails::Application
@@ -15,7 +16,6 @@ module ShoppingApp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.filestack_rails.api_key = ENV["FILESTACK_APP_ID"]
-    config.filestack_rails.client_name = ENV["FILESTACK_custom_client_name"]
 
   end
 end
