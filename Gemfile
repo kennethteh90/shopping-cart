@@ -65,3 +65,8 @@ gem 'faker'
 gem 'slim-rails'
 
 gem 'devise'
+
+# Redis
+gem "redis", ">= 3.2.0"
+
+gem 'jquery-rails'

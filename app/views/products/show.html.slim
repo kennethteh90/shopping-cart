@@ -7,4 +7,10 @@ h1.jumbotron JayKen | #{ @product.name.capitalize }
       h5 = @product.brand
       p = @product.description
 
-    = link_to 'Back to product list', products_path
+      - if signed_in?
+      = link_to "", class: "btn", data: {target: @cart_action, addUrl: add_to_cart_path(@product), removeUrl: remove_from_cart_path(@product)} do
+        span = @cart_action
+        |  Cart
+      / class: "btn btn-success m-3"
+
+    = link_to 'Back to product list', products_path, class: "btn btn-primary m-3"

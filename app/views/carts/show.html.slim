@@ -1,0 +1,17 @@
+h1.jumbotron Your Shopping Cart
+
+.container
+  .row
+    table.table
+      thead
+        th Name
+        th Price
+      tbody
+        - @cart_products.each do |cart_product|
+          tr
+            td = cart_product.name
+            td = cart_product.price
+            td = link_to 'Remove', remove_from_cart_path(cart_product), method: :put
+        tr.font-weight-bold
+          td Total
+          td = @cart_total
