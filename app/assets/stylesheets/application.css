@@ -15,5 +15,9 @@
  */
 
 .main-logo {
-  height: 90px;
+  height: 80px;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
 }

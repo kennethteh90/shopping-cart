@@ -14,13 +14,12 @@ html
     = filestack_js_init_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link[rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"]
 
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top.fixed-top
       a.navbar-brand[href="/"]
         = image_tag "JAYKEN.png", class: "main-logo"
-      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
-        span.navbar-toggler-icon
       #navbarNavDropdown.collapse.navbar-collapse
         ul.navbar-nav
           - Category.all.each do |category|
@@ -33,15 +32,22 @@ html
           span.cart-count>= current_user.cart_count
           | )
       - if admin_signed_in?
-        .card.mr-sm-2.bg-dark.px-3.border.rounded
-          h4.card-title.text-white = "Admin"
-          btn.text-white = link_to 'Products Index', admin_products_path
-          btn.text-white = link_to 'Category Index', admin_categories_path
-          btn.text-white = link_to 'Logout', destroy_admin_session_path, method: :delete
+        .card.mr-sm-2.px-3.border.rounded.bg-dark
+          .nav
+            .nav-link.disabled = "for admin:"
+            .nav-link.navbar-text = link_to 'Products', admin_products_path
+            .nav-link.navbar-text = link_to 'Categories', admin_categories_path
+            .nav-link.navbar-text = link_to 'Logout', destroy_admin_session_path, method: :delete
       - elsif user_signed_in?
-        = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
+        .card.mr-sm-2.px-3.border.rounded.bg-dark
+          .nav
+            .nav-link.navbar-text = link_to 'Logout', destroy_user_session_path, method: :delete
       - else
-        = link_to 'Login', new_user_session_path, class: 'nav-link'
+        .card.mr-sm-2.px-3.border.rounded.bg-dark
+          .nav
+            .nav-link.navbar-text = link_to 'Login', new_user_session_path
+            .nav-link.text-white = "or"
+            .nav-link.navbar-text = link_to 'Sign Up', new_user_registration_path
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: name
