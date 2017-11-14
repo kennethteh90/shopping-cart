@@ -12,13 +12,13 @@ if Admin.count == 0
   Admin.create(email:'admin@mail.com', password: '123456')
 end
 
-unless Product.count < 60
+unless Product.count > 60
   30.times do
     Product.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.00, quantity: 100, size: 'S', color: 'Black' )
   end
 end
 
-unless Category.count < 7
+unless Category.count > 7
   Category.create(name: "Women")
   Category.create(name: "Men")
   Category.create(name: "Tops")
