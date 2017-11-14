@@ -27,17 +27,16 @@ html
             li.nav-item.active
               = link_to category.name, category_path(category), class: 'nav-link'
       .nav-item
-        - if user_signed_in?
-          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
-        - else
-          = link_to 'Login', new_user_session_path, class: 'nav-link'
       - if admin_signed_in?
-        .bg-dark.px-3.border.rounded
-          a.mr-sm-2
-            p.my-2.text-white.text-center = "Admin"
-            = link_to 'Products Index', admin_products_path, class: 'btn text-white'
-            = link_to 'Category Index', admin_categories_path, class: 'btn text-white'
-            = link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'btn text-white'
+        .card.mr-sm-2.bg-dark.px-3.border.rounded
+          h4.card-title.text-white = "Admin"
+          btn.text-white = link_to 'Products Index', admin_products_path
+          btn.text-white = link_to 'Category Index', admin_categories_path
+          btn.text-white = link_to 'Logout', destroy_admin_session_path, method: :delete
+      - elsif user_signed_in?
+        = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        = link_to 'Login', new_user_session_path, class: 'nav-link'
 
     - flash.each do |name, msg|
       = content_tag :div, msg, class: name

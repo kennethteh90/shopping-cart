@@ -2,6 +2,13 @@ h1.jumbotron Welcome to JayKen!
 
 .container
   .row
+    .col-3
+      = simple_form_for :search, url: products_path, method: :get do |f|
+        = f.input :term, label: false
+        = f.button :submit, 'Search', name: nil
+
+.container
+  .row
     .col-3.card
       h2 Categories
     .col-9.card

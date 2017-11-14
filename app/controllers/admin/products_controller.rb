@@ -1,7 +1,11 @@
 class Admin::ProductsController < AdminController
 
   def index
-    @products = Product.all
+    @products = if params[:search]
+        Product.where("name ILIKE :query OR brand ILIKE :query OR description ILIKE :query", query: "%#{params[:search][:term]}%" )
+      else
+        Product.all
+      end
   end
 
   def new
@@ -57,6 +61,10 @@ class Admin::ProductsController < AdminController
 
     def product_params
       params.require(:product).permit(:name, :brand, :description, :price, :quantity, :size, :color)
+    end
+
+    def search_params
+      params.require(:search).permit(:term)
     end
 
 end
