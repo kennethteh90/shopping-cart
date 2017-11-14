@@ -3,22 +3,44 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    cart_ids = $redis.smembers current_user_cart
+    cart_ids = []
+    cart_qtys = []
+    ($redis.hgetall current_user_cart).map do |key, value|
+      cart_ids << key
+      cart_qtys << value
+    end
     @cart_products = Product.find(cart_ids)
+    @cart_products_with_qty = @cart_products.zip(cart_qtys)
 
-    # @cart_total = @cart_products.map { |product| product.price }.reduce(:+)
-    @cart_total = @cart_products.reduce(0) { |memo, product| memo + product.price}
+    @cart_total = @cart_products_with_qty.map { |product, qty| product.price * qty.to_i }.reduce(:+)
+    # @cart_total = @cart_products.reduce(0) { |memo, product| memo + product.price}
+
+    # for remove
+    # @cart_action = @product.cart_action current_user.try :id
+
   end
 
   def add
-    $redis.sadd current_user_cart, params[:product_id]
+    $redis.hset current_user_cart, params[:product_id], 1
     render json: current_user.cart_count, status: 200
   end
 
   def remove
-    $redis.srem current_user_cart, params[:product_id]
-    render json: current_user.cart_count, status: 200
+    $redis.hdel current_user_cart, params[:product_id]
+
+    respond_to do |format|
+      format.js { render json: current_user.cart_count, status: 200 }
+      format.html { redirect_to cart_path }
+    end
   end
+
+  def change
+    # byebug
+    $redis.hset current_user_cart, params[:product_id], params[:quantity][:qty]
+    redirect_to cart_path
+  end
+
+
 
   private
 

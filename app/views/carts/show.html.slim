@@ -6,12 +6,19 @@ h1.jumbotron Your Shopping Cart
       thead
         th Name
         th Price
+        th colspan="2" Quantity
       tbody
-        - @cart_products.each do |cart_product|
+        - @cart_products_with_qty.each do |array|
+          - cart_product = array[0]
+          - qty = array[1]
           tr
-            td = cart_product.name
-            td = cart_product.price
-            td = link_to 'Remove', remove_from_cart_path(cart_product), method: :put
+            td.align-middle = cart_product.name
+            td.align-middle = cart_product.price
+
+            td.align-middle = simple_form_for :quantity, url: change_cart_path(cart_product), method: :put, id: "form" do |f|
+              = f.input :qty, collection: 1..9, selected: qty, input_html: { onchange: "this.form.submit()"}, label: false
+            td.align-middle = link_to 'Remove', remove_from_cart_path(cart_product), method: :put
+
         tr.font-weight-bold
-          td Total
+          td colspan="2" Total
           td = @cart_total
