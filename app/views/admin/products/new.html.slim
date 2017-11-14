@@ -15,7 +15,9 @@ h1.jumbotron Add a Product
     = f.input :size
     = f.input :color
 
-    = f.association :categories, collection: Category.all, as: :check_boxes
+    = f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false
+
+    = f.filestack_field :photos, "upload photo", pickerOptions: {'accept' => 'image/*'}
 
     = f.button :submit
 

@@ -11,13 +11,14 @@ class Admin::ProductsController < AdminController
 
   def create
     @product = Product.new(product_params)
-    @cat_array = params.dig(:product, :category_ids)[1..-1]
+    @cat_array = params.dig(:product, :category_ids).reject(&:empty?)
     @cat_array.each do |cat|
       @category = Category.find(cat)
       @product.categories << @category
     end
 
     if @product.save
+      @product.photos.create(filelocation: params[:product][:photos])
       flash[:notice] = "Product added!"
       redirect_to admin_products_path
     else
@@ -31,7 +32,7 @@ class Admin::ProductsController < AdminController
 
   def update
     @product = Product.find(params[:id])
-    @cat_array = params.dig(:product, :category_ids)[1..-1]
+    @cat_array = params.dig(:product, :category_ids).reject(&:empty?)
     @product.product_categories.destroy_all
     @cat_array.each do |cat|
       @category = Category.find(cat)
@@ -40,7 +41,7 @@ class Admin::ProductsController < AdminController
 
     if @product.update(product_params)
       flash[:notice] = "Product updated!"
-      redirect_to admin_products_path
+      redirect_to product_path
     else
       render :edit
     end
@@ -55,7 +56,7 @@ class Admin::ProductsController < AdminController
   private
 
     def product_params
-      params.require(:product).permit(:name, :brand, :description, :price, :quantity, :size, :color, :category_ids)
+      params.require(:product).permit(:name, :brand, :description, :price, :quantity, :size, :color)
     end
 
 end
