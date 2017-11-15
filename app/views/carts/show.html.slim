@@ -22,3 +22,5 @@ h1.jumbotron Your Shopping Cart
         tr.font-weight-bold
           td colspan="2" Total
           td = @cart_total
+
+    = link_to "Checkout", new_transaction_path, class: "button" unless current_user.get_cart_products_with_qty.blank?

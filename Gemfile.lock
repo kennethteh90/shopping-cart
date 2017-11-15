@@ -42,6 +42,8 @@ GEM
     arel (8.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
+    braintree (2.33.1)
+      builder (>= 2.0.0)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.16.0)
@@ -94,6 +96,10 @@ GEM
       rails (>= 4.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gon (6.2.0)
+      actionpack (>= 3.0)
+      multi_json
+      request_store (>= 1.0)
     hashie (3.5.6)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
@@ -144,10 +150,6 @@ GEM
     orm_adapter (0.5.0)
     parallel (1.11.2)
     pg (0.21.0)
-    pg_search (2.1.1)
-      activerecord (>= 4.2)
-      activesupport (>= 4.2)
-      arel (>= 6)
     puma (3.10.0)
     rack (2.0.3)
     rack-test (0.7.0)
@@ -180,6 +182,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.1)
+    request_store (1.3.2)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -274,6 +277,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  braintree (~> 2.33.1)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
@@ -282,12 +286,12 @@ DEPENDENCIES
   factory_bot_rails (~> 4.0)
   faker
   filestack-rails (~> 3.1.0)
+  gon (~> 6.2.0)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   omniauth-facebook
   pg (~> 0.18)
-  pg_search
   puma (~> 3.7)
   rails (~> 5.1.4)
   redis (>= 3.2.0)

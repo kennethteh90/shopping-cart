@@ -3,20 +3,20 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    cart_ids = []
-    cart_qtys = []
-    ($redis.hgetall current_user_cart).map do |key, value|
-      cart_ids << key
-      cart_qtys << value
-    end
-    @cart_products = Product.find(cart_ids)
-    @cart_products_with_qty = @cart_products.zip(cart_qtys)
+    # cart_ids = []
+    # cart_qtys = []
+    # ($redis.hgetall current_user_cart).map do |key, value|
+    #   cart_ids << key
+    #   cart_qtys << value
+    # end
+    # cart_products = Product.find(cart_ids)
+    # @cart_products_with_qty = cart_products.zip(cart_qtys)
+    #
+    # @cart_total = @cart_products_with_qty.map { |product, qty| product.price * qty.to_i }.reduce(:+)
 
-    @cart_total = @cart_products_with_qty.map { |product, qty| product.price * qty.to_i }.reduce(:+)
-    # @cart_total = @cart_products.reduce(0) { |memo, product| memo + product.price}
-
-    # for remove
-    # @cart_action = @product.cart_action current_user.try :id
+    # Refactored into User model
+    @cart_products_with_qty = current_user.get_cart_products_with_qty
+    @cart_total = current_user.cart_total_price
 
   end
 
@@ -39,8 +39,6 @@ class CartsController < ApplicationController
     $redis.hset current_user_cart, params[:product_id], params[:quantity][:qty]
     redirect_to cart_path
   end
-
-
 
   private
 
