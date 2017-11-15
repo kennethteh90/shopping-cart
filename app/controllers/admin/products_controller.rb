@@ -1,7 +1,11 @@
 class Admin::ProductsController < AdminController
 
   def index
-    @products = Product.all
+    @products = if params[:search]
+        Product.where("name ILIKE :query OR brand ILIKE :query OR description ILIKE :query", query: "%#{params[:search][:term]}%" )
+      else
+        Product.all
+      end
   end
 
   def new
@@ -11,7 +15,7 @@ class Admin::ProductsController < AdminController
 
   def create
     @product = Product.new(product_params)
-    @cat_array = params.dig(:product, :category_ids).reject(&:empty?)
+    @cat_array = params.dig(:product, :category_ids)
     @cat_array.each do |cat|
       @category = Category.find(cat)
       @product.categories << @category
@@ -32,7 +36,7 @@ class Admin::ProductsController < AdminController
 
   def update
     @product = Product.find(params[:id])
-    @cat_array = params.dig(:product, :category_ids).reject(&:empty?)
+    @cat_array = params.dig(:product, :category_ids)
     @product.product_categories.destroy_all
     @cat_array.each do |cat|
       @category = Category.find(cat)
@@ -57,6 +61,10 @@ class Admin::ProductsController < AdminController
 
     def product_params
       params.require(:product).permit(:name, :brand, :description, :price, :quantity, :size, :color)
+    end
+
+    def search_params
+      params.require(:search).permit(:term)
     end
 
 end
