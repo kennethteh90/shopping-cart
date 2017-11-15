@@ -15,5 +15,19 @@
  */
 
 .main-logo {
-  height: 90px;
+  height: 80px;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.jumbotron {
+  margin-bottom: 0px;
+  background-position: 0% 25%;
+  background: url("cat3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
 }
