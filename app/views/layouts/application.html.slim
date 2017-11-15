@@ -27,6 +27,18 @@ html
             li.nav-item.active
               = link_to category.name, category_path(category), class: 'nav-link'
       .nav-item
+        = link_to cart_path do
+          | My Cart
+          | (
+          span.cart-count>= current_user.cart_count
+          | )
+
+      .nav-item
+        - if user_signed_in?
+          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else
+          = link_to 'Login', new_user_session_path, class: 'nav-link'
+
       - if admin_signed_in?
         .card.mr-sm-2.bg-dark.px-3.border.rounded
           h4.card-title.text-white = "Admin"
