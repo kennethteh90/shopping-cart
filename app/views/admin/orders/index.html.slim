@@ -1,0 +1,16 @@
+h1.jumbotron Orders
+
+.container
+  .row
+    .col-12.card
+      h2 Orders
+      .row
+        table.table
+          thead
+            th User
+            th Product
+            th Quantity
+            th Order Time
+            th colspan="2" Completed
+          tbody
+          = render partial: "admin_order", collection: @orders

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'transactions/new'
-
   get 'carts/show'
 
   root to: 'products#index'
@@ -18,6 +16,9 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :photos, only: [:new, :create, :destroy]
+    resources :orders, only: [:index] do
+      put '/completed', to: 'orders#completed'
+    end
   end
 
   resource :cart, only: [:show] do

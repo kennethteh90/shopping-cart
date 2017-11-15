@@ -34,6 +34,7 @@ html
             .nav-link.disabled = "for admin:"
             .nav-link.navbar-text = link_to 'Products', admin_products_path
             .nav-link.navbar-text = link_to 'Categories', admin_categories_path
+            .nav-link.navbar-text = link_to 'Orders', admin_orders_path
             .nav-link.navbar-text = link_to 'Logout', destroy_admin_session_path, method: :delete
       - elsif user_signed_in?
         .card.mr-sm-2.px-3.border.rounded.bg-dark
