@@ -23,14 +23,9 @@ html
       #navbarNavDropdown.collapse.navbar-collapse
         ul.navbar-nav
           - Category.all.each do |category|
-            li.nav-item.active
-              = link_to category.name, category_path(category), class: 'nav-link'
-      .nav-item
-        = link_to cart_path do
-          | My Cart
-          | (
-          span.cart-count>= current_user.cart_count
-          | )
+            li.h5.navbar-text.nav-item.nav-link
+              = link_to category.name, category_path(category)
+
       - if admin_signed_in?
         .card.mr-sm-2.px-3.border.rounded.bg-dark
           .nav
@@ -42,6 +37,12 @@ html
         .card.mr-sm-2.px-3.border.rounded.bg-dark
           .nav
             .nav-link.navbar-text = link_to 'Logout', destroy_user_session_path, method: :delete
+            .nav-link
+              = link_to cart_path do
+                | My Cart
+                | (
+                span.cart-count>= current_user.cart_count
+                | )
       - else
         .card.mr-sm-2.px-3.border.rounded.bg-dark
           .nav
