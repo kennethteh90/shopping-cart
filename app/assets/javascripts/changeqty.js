@@ -1,0 +1,3 @@
+$("#quantity").onClick(){
+  $("#form").submit
+}

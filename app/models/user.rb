@@ -16,4 +16,9 @@ class User < ApplicationRecord
      # user.skip_confirmation!
     end
   end
+
+  def cart_count
+    $redis.hlen "cart#{id}"
+  end
+
 end
