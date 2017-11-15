@@ -69,3 +69,6 @@ gem 'devise'
 gem "redis", ">= 3.2.0"
 
 gem 'jquery-rails'
+
+gem 'braintree', '~> 2.33.1'
+gem 'gon', '~> 6.2.0'

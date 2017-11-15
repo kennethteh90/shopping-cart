@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transactions/new'
+
   get 'carts/show'
 
   root to: 'products#index'
@@ -23,5 +25,7 @@ Rails.application.routes.draw do
     put 'remove/:product_id', to: 'carts#remove', as: :remove_from
     put 'change/:product_id', to: 'carts#change', as: :change
   end
+
+  resources :transactions, only: [:new, :create]
 
 end
