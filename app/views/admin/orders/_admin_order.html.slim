@@ -1,0 +1,7 @@
+tr class = "#{'faded' if admin_order.completed}"
+  td #{ admin_order.user.email }
+  td #{ admin_order.product.name }
+  td #{ admin_order.quantity }
+  td #{ admin_order.created_at.getlocal.strftime("%e-%m-%y %H:%M") }
+  td #{ admin_order.completed }
+  td = link_to 'Completed!', admin_order_completed_path(admin_order), method: :put, class: "btn btn-info"
