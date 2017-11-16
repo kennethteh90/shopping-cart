@@ -1,7 +1,7 @@
 .jumbotron.display-3 Edit Product
 
 .container
-  form.form-group.form-control
+  .form-group.form-control
     = simple_form_for [:admin, @product], class: "form-horizontal" do |f|
       = f.input :name
       = f.input :brand
@@ -10,7 +10,7 @@
       = f.input :size
       = f.input :color
 
-      = f.association :categories, collection: Category.all, as: :check_boxes
+      = f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false
 
       = f.filestack_field :photos, "upload photo", pickerOptions: {'accept' => 'image/*'}
 

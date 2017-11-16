@@ -1,6 +1,6 @@
 .jumbotron.display-3 #{ @product.name.capitalize }
 .container
-  .card.m-1.p-2[style="width:15rem;"]
+  .card.m-1.p-2[style="width:17rem;"]
     - if @product.photos.first
       = filestack_image @product.photos.first.filelocation, transform: filestack_transform.resize(width:200, height:300)
   .card.m-1.p-2

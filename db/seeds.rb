@@ -26,3 +26,8 @@ unless Category.count > 7
   Category.create(name: "On Sale")
   Category.create(name: "New Arrivals")
 end
+
+unless Photo.count > 10
+  Photo.create(product_id:7, filelocation:"https://cdn.filestackcontent.com/RgXZmahvTbqSiULrQ0LQ")
+  Photo.create(product_id:11, filelocation:"https://cdn.filestackcontent.com/KksifRroR7Cs1ZAGas0M")
+end

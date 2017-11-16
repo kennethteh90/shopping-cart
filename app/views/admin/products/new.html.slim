@@ -9,7 +9,7 @@
         = f.button :submit, "Create", class: "btn btn-light"
 
 .container
-  form.form-group.form-control
+  .form-group.form-control
     = simple_form_for [:admin, @product], class: "form-horizontal" do |f|
       = f.input :name
       = f.input :brand
