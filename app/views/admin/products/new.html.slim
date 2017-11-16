@@ -1,24 +1,28 @@
-h1.jumbotron Add a Product
+.jumbotron.display-3 Add a Product
 
 .container
-  = simple_form_for [:admin, @category], class: "form-horizontal" do |f|
-    = f.input :name
-    = f.button :submit
+  .row.navbar
+    h5
+    form.form-inline.justify-content-end
+      = simple_form_for [:admin, @category], class: "form-horizontal" do |f|
+        = f.input :name, label: false, placeholder: "Add a New Category"
+        = f.button :submit, "Create", class: "btn btn-light"
 
 .container
-  = simple_form_for [:admin, @product], class: "form-horizontal" do |f|
-    = f.input :name
-    = f.input :brand
-    = f.input :description
-    = f.input :price
-    = f.input :quantity
-    = f.input :size
-    = f.input :color
+  form.form-group.form-control
+    = simple_form_for [:admin, @product], class: "form-horizontal" do |f|
+      = f.input :name
+      = f.input :brand
+      = f.input :description
+      = f.input :price
+      = f.input :quantity
+      = f.input :size
+      = f.input :color
 
-    = f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false
+      = f.association :categories, collection: Category.all, as: :check_boxes, include_hidden: false
 
-    = f.filestack_field :photos, "upload photo", pickerOptions: {'accept' => 'image/*'}
+      = f.filestack_field :photos, "upload photo", pickerOptions: {'accept' => 'image/*'}
 
-    = f.button :submit
+      = f.button :submit, class: "btn btn-light"
 
-  = link_to 'Back to Product List', admin_products_path
+  = link_to 'Back to Product List', admin_products_path, style: "color:black", class: "btn btn-light"

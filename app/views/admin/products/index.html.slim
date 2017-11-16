@@ -1,20 +1,20 @@
-h1.jumbotron Product List
+.jumbotron.display-3 Product List
+
+.container.navbar
+  = link_to 'Add Product', new_admin_product_path, style: "color:black", class: "btn btn-light"
+  form.form-inline.justify-content-end
+    = simple_form_for :search, url: admin_products_path, method: :get do |f|
+      = f.input :term, label: false
+      = f.button :submit, 'Search', name: nil, class: "btn btn-light"
 
 .container
   .row
-    .col-3
-      = simple_form_for :search, url: admin_products_path, method: :get do |f|
-        = f.input :term, label: false
-        = f.button :submit, 'Search', name: nil
-
-.container
-  .row
-    = link_to 'Add Product', new_admin_product_path
     .col-12.card
       h2 Products
       .row
         table.table
           thead
+            th Photo
             th Name
             th Brand
             th Description

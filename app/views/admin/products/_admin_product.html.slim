@@ -1,4 +1,7 @@
 tr
+  td
+    - if admin_product.photos.first
+      = filestack_image admin_product.photos.first.filelocation, transform: filestack_transform.resize(width:200, height:300)
   td #{ admin_product.name }
   td #{ admin_product.brand }
   td #{ admin_product.description }
