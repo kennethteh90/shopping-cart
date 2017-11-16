@@ -1,3 +1,0 @@
-$("#quantity").onClick(){
-  $("#form").submit
-}
