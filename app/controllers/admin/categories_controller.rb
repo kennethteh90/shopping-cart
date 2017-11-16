@@ -10,7 +10,10 @@ class Admin::CategoriesController < AdminController
         flash[:notice] = "Category added!"
         redirect_to new_admin_product_path
       else
-        render :new
+        @product = Product.new
+        @category = Category.new
+        flash[:notice] = "Category can't be blank!"
+        render 'admin/products/new'
       end
     end
 
