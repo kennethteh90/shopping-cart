@@ -1,0 +1,33 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top.fixed-top
+  a.navbar-brand[href="/"]
+    = image_tag "JAYKEN.png", class: "main-logo"
+  #navbarText.collapse.navbar-collapse
+    ul.navbar-nav
+      - Category.all.each do |category|
+        li.h4.navbar-text.nav-item.nav-link
+          = link_to category.name, category_path(category)
+
+  - if admin_signed_in?
+    .card.mr-sm-2.px-3.border.rounded.bg-dark
+      .nav
+        .nav-link.disabled = "for admin:"
+        .nav-link.navbar-text = link_to 'Products', admin_products_path
+        .nav-link.navbar-text = link_to 'Categories', admin_categories_path
+        .nav-link.navbar-text = link_to 'Orders', admin_orders_path
+        .nav-link.navbar-text = link_to 'Logout', destroy_admin_session_path, method: :delete
+  - elsif user_signed_in?
+    .card.mr-sm-2.px-3.border.rounded.bg-dark
+      .nav
+        .nav-link = link_to 'Logout', destroy_user_session_path, method: :delete, style: "color:grey"
+        .nav-link.navbar-text
+          = link_to cart_path do
+            | My Cart &nbsp;
+            | (
+            span.cart-count>= current_user.cart_count
+            | )
+  - else
+    .card.mr-sm-2.px-3.border.rounded.bg-dark
+      .nav
+        .nav-link.navbar-text = link_to 'Login', new_user_session_path
+        .nav-link.text-white = "or"
+        .nav-link.navbar-text = link_to 'Sign Up', new_user_registration_path

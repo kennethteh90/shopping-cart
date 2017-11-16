@@ -1,11 +1,10 @@
-h1.jumbotron Checkout
+.jumbotron.display-3 Checkout
 
 .container.card.p-5
   h2.mbs New Transaction
   = form_tag transactions_path do
     p Please enter your payment details:
     #dropin
-    = submit_tag "Pay #{current_user.cart_total_price}$", class: "btn btn-primary my-2"
-
+    = submit_tag "Pay #{current_user.cart_total_price}$", style: "color:black", class: "btn btn-light"
 br
 br

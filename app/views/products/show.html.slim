@@ -1,16 +1,16 @@
-h1.jumbotron JayKen | #{ @product.name.capitalize }
-
+.jumbotron.display-3 #{ @product.name.capitalize }
 .container
-  .row
-    .col-12.card
+  .card.m-1.p-2[style="width:15rem;"]
+    - if @product.photos.first
+      = filestack_image @product.photos.first.filelocation, transform: filestack_transform.resize(width:200, height:300)
+  .card.m-1.p-2
+    .card-body
       h3 = @product.name
       h5 = @product.brand
       p = @product.description
-
-      - if signed_in?
-      = link_to "", class: "btn", data: {target: @cart_action, addUrl: add_to_cart_path(@product), removeUrl: remove_from_cart_path(@product)} do
-        span = @cart_action
-        |  Cart
-      / class: "btn btn-success m-3"
-
-    = link_to 'Back to product list', products_path, class: "btn btn-primary m-3"
+    .card-footer.navbar
+      - if user_signed_in?
+        = link_to "", style:"color:black", data: {target: @cart_action, addUrl: add_to_cart_path(@product), removeUrl: remove_from_cart_path(@product)} do
+          span = @cart_action
+          |  Cart
+      = link_to 'Back to Product List', products_path, style: "color:black"

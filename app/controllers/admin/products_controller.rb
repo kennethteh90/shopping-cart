@@ -44,8 +44,9 @@ class Admin::ProductsController < AdminController
     end
 
     if @product.update(product_params)
+      @product.photos.create(filelocation: params[:product][:photos])
       flash[:notice] = "Product updated!"
-      redirect_to product_path
+      redirect_to admin_products_path
     else
       render :edit
     end

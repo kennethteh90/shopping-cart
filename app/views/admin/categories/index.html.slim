@@ -1,13 +1,12 @@
-h1.jumbotron Category List
+.jumbotron.display-3 Category List
 
+.container.navbar
+  = link_to 'Add Category', new_admin_category_path, style: "color:black", class: "btn btn-light"
 .container
   .row
-    = link_to 'Add Category', new_admin_category_path
     .col-12.card
-      h2 Categories
-      .row
-        table.table
-          thead
-            th Name
-          tbody
-          = render partial: "admin_category", collection: @categories
+      table.table
+        thead
+          th Name
+        tbody
+        = render partial: "admin_category", collection: @categories

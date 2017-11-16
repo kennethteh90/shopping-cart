@@ -1,4 +1,4 @@
-h1.jumbotron Your Shopping Cart
+.jumbotron.display-3 Your Shopping Cart
 
 .container
   .row
@@ -14,13 +14,16 @@ h1.jumbotron Your Shopping Cart
           tr
             td.align-middle = cart_product.name
             td.align-middle = cart_product.price
-
-            td.align-middle = simple_form_for :quantity, url: change_cart_path(cart_product), method: :put, id: "form" do |f|
-              = f.input :qty, collection: 1..9, selected: qty, input_html: { onchange: "this.form.submit()"}, label: false
-            td.align-middle = link_to 'Remove', remove_from_cart_path(cart_product), method: :put
+            td.align-middle
+              = simple_form_for :quantity, url: change_cart_path(cart_product), method: :put, id: "form" do |f|
+                = f.input :qty, collection: 1..9, selected: qty, input_html: { onchange: "this.form.submit()"}, label: false
+            td.align-middle
+              = link_to 'Remove', remove_from_cart_path(cart_product), method: :put, style: "color:black", class: "btn btn-sm btn-light"
 
         tr.font-weight-bold
-          td colspan="2" Total
-          td = @cart_total
-
-    = link_to "Checkout", new_transaction_path, class: "button" unless current_user.get_cart_products_with_qty.blank?
+          td colspan="2"
+            h5 Total
+          td
+            h5 = @cart_total
+  .row
+    = link_to "Checkout", new_transaction_path, class: "btn btn-light",style: "color:black" unless current_user.get_cart_products_with_qty.blank?
