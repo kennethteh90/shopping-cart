@@ -1,5 +1,10 @@
-h1.jumbotron JayKen | #{ @category.name }
-
+.jumbotron.display-3 #{ @category.name }
+.container.navbar
+  h5
+  form.form-inline.justify-content-end
+    = simple_form_for :search, url: category_path, method: :get do |f|
+      = f.input :term, label: false
+      = f.button :submit, 'Search', name: nil
 .container
   .row
     .col-3.card

@@ -1,11 +1,11 @@
-h1.jumbotron Welcome to JayKen!
+.jumbotron.display-3 Welcome to JAYKEN
 
-.container
-  .row
-    .col-3
-      = simple_form_for :search, url: products_path, method: :get do |f|
-        = f.input :term, label: false
-        = f.button :submit, 'Search', name: nil
+.container.navbar
+  h5
+  form.form-inline.justify-content-end
+    = simple_form_for :search, url: products_path, method: :get do |f|
+      = f.input :term, label: false
+      = f.button :submit, 'Search', name: nil
 
 .container
   .row

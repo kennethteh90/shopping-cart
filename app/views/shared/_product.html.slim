@@ -1,4 +1,11 @@
-.card.m-1.p-2.col-3
-  p #{ product.name }
-  p <small> SGD </small> #{ product.price }
-  = link_to 'View Product', product_path(product)
+.card.m-1.p-2[style="width:15rem;"]
+  .card-img-top.text-center
+    - if product.photos.first
+      = filestack_image product.photos.first.filelocation, transform: filestack_transform.resize(width:200, height:300)
+  .card-body
+    .card-title
+      p #{ product.name }
+    .card-text
+      p <small> SGD </small> #{ product.price }
+  .card-footer
+    = link_to 'View Product', product_path(product), style: "color:black"
