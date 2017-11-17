@@ -44,6 +44,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem "factory_bot_rails", "~> 4.0"
   gem 'dotenv-rails'
+  gem "fakeredis"
 end
 
 group :development do
@@ -73,3 +74,6 @@ gem 'jquery-rails'
 
 gem 'braintree', '~> 2.33.1'
 gem 'gon', '~> 6.2.0'
+
+# Fix dependency vulnerability, recommended by Github
+# gem 'rest-client', '~> 1.7.3'

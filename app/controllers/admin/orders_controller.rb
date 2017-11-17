@@ -1,7 +1,7 @@
 class Admin::OrdersController < AdminController
 
     def index
-      @orders = Order.all.order("completed asc")
+      @orders = Order.all.order(completed: :asc, created_at: :desc)
     end
 
     def completed

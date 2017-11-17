@@ -1,3 +1,15 @@
 // Place all the styles related to the transactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#checkout-button {
+  background-color: rgba(0,156,222, .8);
+  color: white !important;
+  font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
+  font-size: 16px;
+}
+
+#checkout-button:hover {
+  background-color: #009CDE;
+  color: white !important;
+}

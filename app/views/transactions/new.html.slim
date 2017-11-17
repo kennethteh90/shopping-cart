@@ -5,6 +5,6 @@
   = form_tag transactions_path do
     p Please enter your payment details:
     #dropin
-    = submit_tag "Pay #{current_user.cart_total_price}$", style: "color:black", class: "btn btn-light"
+    = submit_tag "Pay #{current_user.cart_total_price}$", style: "color:black", class: "btn px-3", id: "checkout-button"
 br
 br
