@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order do
-    product_id 1
-    user_id 1
+    sequence(:product_id) { |n| n += 1 }
+    sequence(:user_id) { |n| n += 5 }
   end
 end
