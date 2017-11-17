@@ -27,7 +27,19 @@ unless Category.count > 7
   Category.create(name: "New Arrivals")
 end
 
+unless ProductCategory.count > 20
+  ProductCategory.create(product_id: rand(20), category_id: rand(1))
+end
+
 unless Photo.count > 10
-  Photo.create(product_id:7, filelocation:"https://cdn.filestackcontent.com/RgXZmahvTbqSiULrQ0LQ")
-  Photo.create(product_id:11, filelocation:"https://cdn.filestackcontent.com/KksifRroR7Cs1ZAGas0M")
+  Photo.create(product_id:1, filelocation:"https://cdn.filestackcontent.com/noW6c3OTzWMKZi0JcOr0")
+  Photo.create(product_id:2, filelocation:"https://cdn.filestackcontent.com/KksifRroR7Cs1ZAGas0M")
+  Photo.create(product_id:3, filelocation:"https://cdn.filestackcontent.com/b1nBzgZRSXGMHs9MOfrF")
+  Photo.create(product_id:4, filelocation:"https://cdn.filestackcontent.com/6hdnx7oZSRqCtiGe9tTB")
+  Photo.create(product_id:5, filelocation:"https://cdn.filestackcontent.com/O9FNu5rTQwefQQRulXhK")
+  Photo.create(product_id:6, filelocation:"https://cdn.filestackcontent.com/7aly4qQhSU6ErwB3LidI")
+  Photo.create(product_id:7, filelocation:"https://cdn.filestackcontent.com/nNDKoqQ2Q9uXNWQazDu3")
+  Photo.create(product_id:8, filelocation:"https://cdn.filestackcontent.com/LWuWtfjjQGOLN0Gy44M2")
+  Photo.create(product_id:9, filelocation:"https://cdn.filestackcontent.com/RgXZmahvTbqSiULrQ0LQ")
+  Photo.create(product_id:10, filelocation:"https://cdn.filestackcontent.com/ftGBq6wJQ4yTEuPu8RSk")
 end
