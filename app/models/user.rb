@@ -21,7 +21,8 @@ class User < ApplicationRecord
   end
 
   def cart_count
-    $redis.hlen "cart#{id}"
+    all_items = $redis.hvals "cart#{id}"
+    all_items.sum.to_i
   end
 
   def cart_total_price
@@ -47,7 +48,19 @@ class User < ApplicationRecord
     get_cart_products_with_qty.each do |product, qty|
       self.orders.create(user: self, product: product, quantity: qty)
     end
-    $redis.del "cart#{id}"
+    $redis.del current_user_cart
+  end
+
+  def add_product_to_cart(product_id)
+    $redis.hset current_user_cart, product_id, 1
+  end
+
+  def remove_product_from_cart(product_id)
+    $redis.hdel current_user_cart, product_id
+  end
+
+  def change_quantity(product_id, quantity)
+    $redis.hset "cart#{id}", product_id, quantity
   end
 
 end

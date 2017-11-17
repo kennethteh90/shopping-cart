@@ -10,13 +10,12 @@ class CartsController < ApplicationController
   end
 
   def add
-    $redis.hset current_user_cart, params[:product_id], 1
+    current_user.add_product_to_cart(params[:product_id])
     render json: current_user.cart_count, status: 200
   end
 
   def remove
-    $redis.hdel current_user_cart, params[:product_id]
-
+    current_user.remove_product_from_cart(params[:product_id])
     respond_to do |format|
       format.js { render json: current_user.cart_count, status: 200 }
       format.html { redirect_to cart_path }
@@ -24,15 +23,8 @@ class CartsController < ApplicationController
   end
 
   def change
-    # byebug
-    $redis.hset current_user_cart, params[:product_id], params[:quantity][:qty]
+    current_user.change_quantity(params[:product_id], params[:quantity][:qty])
     redirect_to cart_path
   end
-
-  private
-
-    def current_user_cart
-      "cart#{current_user.id}"
-    end
 
 end
