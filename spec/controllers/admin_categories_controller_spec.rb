@@ -33,5 +33,5 @@ RSpec.describe Admin::CategoriesController, type: :controller do
 
   describe 'DELETE #destroy' do
   end
-  
+
 end
