@@ -12,24 +12,51 @@ if Admin.count == 0
   Admin.create(email:'admin@mail.com', password: '123456')
 end
 
+unless Category.count > 7
+  @women = Category.create(name: "Women")
+  @men = Category.create(name: "Men")
+  @tops = Category.create(name: "Tops")
+  @bottoms = Category.create(name: "Bottoms")
+  @sale = Category.create(name: "On Sale")
+  @new = Category.create(name: "New Arrivals")
+end
+
 unless Product.count > 60
-  30.times do
-    Product.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.15, size: 'S', color: 'Black' )
+  6.times do
+    @women.products.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.15, size: 'S', color: 'Black' )
+  end
+  6.times do
+    @men.products.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.15, size: 'S', color: 'Black' )
+  end
+  6.times do
+    @tops.products.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.15, size: 'S', color: 'Black' )
+  end
+  6.times do
+    @bottoms.products.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.15, size: 'S', color: 'Black' )
+  end
+  6.times do
+    @sale.products.create(name: Faker::HeyArnold.character, brand: Faker::HeyArnold.location, description: Faker::Hipster.paragraph(2, false, 4), price: 1000.15, size: 'S', color: 'Black' )
   end
 end
 
-unless Category.count > 7
-  Category.create(name: "Women")
-  Category.create(name: "Men")
-  Category.create(name: "Tops")
-  Category.create(name: "Bottoms")
-  Category.create(name: "On Sale")
-  Category.create(name: "New Arrivals")
-end
-
-unless ProductCategory.count > 20
-  ProductCategory.create(product_id: rand(20), category_id: rand(1))
-end
+# unless ProductCategory.count > 20
+#   ProductCategory.create(category_id: 1, product_id: 1)
+#   ProductCategory.create(category_id: 1, product_id: 3)
+#   ProductCategory.create(category_id: 1, product_id: 5)
+#   ProductCategory.create(category_id: 1, product_id: 7)
+#   ProductCategory.create(category_id: 2, product_id: 2)
+#   ProductCategory.create(category_id: 2, product_id: 4)
+#   ProductCategory.create(category_id: 2, product_id: 6)
+#   ProductCategory.create(category_id: 2, product_id: 8)
+#   ProductCategory.create(category_id: 2, product_id: 9)
+#   ProductCategory.create(category_id: 2, product_id: 10)
+#   ProductCategory.create(category_id: 6, product_id: 1)
+#   ProductCategory.create(category_id: 6, product_id: 2)
+#   ProductCategory.create(category_id: 6, product_id: 3)
+#   ProductCategory.create(category_id: 6, product_id: 4)
+#   ProductCategory.create(category_id: 6, product_id: 9)
+#   ProductCategory.create(category_id: 6, product_id: 10)
+# end
 
 unless Photo.count > 10
   Photo.create(product_id:1, filelocation:"https://cdn.filestackcontent.com/noW6c3OTzWMKZi0JcOr0")
