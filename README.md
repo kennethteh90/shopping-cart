@@ -37,6 +37,15 @@ rake db:create db:migrate
 __Note:__ This app requires Redis to run (for the cart component). I found this guide useful in installing my local copy of redis: 
 [Guide for Installing Redis](https://www.linuxhelp.com/how-to-install-redis-server-on-ubuntu-17-04/)
 
+### Testing
+
+Tests are built in Rspec
+
+To run tests:
+```
+$ rspec
+```
+
 ## Authors
 
 * **Kenneth Teh** - [Kenneth's Github](https://github.com/kennethteh90)
