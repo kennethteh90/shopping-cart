@@ -1,3 +1,5 @@
+> **Maintained lightly** for historical Medium/blog links. Active portfolio: [kennethteh90.github.io](https://github.com/kennethteh90/kennethteh90.github.io).
+
 Heroku link: https://shopping-app-jayken.herokuapp.com/
 
 # E-commerce Store App
